@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:background="@mipmap/bgapps"
+    android:background="@drawable/bgapps"
     tools:context=".ProductDetails">
 
     <LinearLayout
@@ -21,22 +20,13 @@
             android:layout_height="wrap_content">
 
 
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="15dp"
-                android:layout_alignParentRight="true"
-                android:contentDescription="@string/producDetails"
-                app:srcCompat="@drawable/details" />
-
             <TextView
                 android:id="@+id/txtTitleDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="15dp"
                 android:textSize="24sp" />
 
@@ -46,7 +36,7 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:alignmentMode="alignMargins"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="70dp"
             android:padding="5dp"
             android:layout_height="wrap_content">
 
@@ -57,17 +47,19 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="5dp"
-                android:text=" Cantidad - Codigo - Venta - Precio/U"
+                android:text=" Cant - Cod - Venta - Precio/U"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 
             <ListView
                 android:id="@+id/listProduct"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="320dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
+                android:divider="#3F6530"
+                android:dividerHeight="1dp"
                 android:layout_marginBottom="10dp"
                 android:scrollbars="vertical">
 
@@ -81,6 +73,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp"
                 android:inputType="number"
+                android:textSize="20sp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
         </LinearLayout>
@@ -96,7 +89,5 @@
             ads:adSize="SMART_BANNER"
             ads:adUnitId="@string/bannerInferior"></com.google.android.gms.ads.AdView>
 
-
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

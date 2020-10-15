@@ -2,11 +2,9 @@ package com.ic.registropedidos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,19 +12,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import Entidades.Cliente;
 import Entidades.Pedido;
 import Model.DataBaseSQLHelper;
 import Model.Estructura_BBDD;
 
-public class ProductDetails extends AppCompatActivity {
-
+public class ProductDetails extends AppCompatActivity  {
     DataBaseSQLHelper conn;
     ListView listaDetallesPedido;
     public static List<String> listaProductos;
@@ -36,6 +30,8 @@ public class ProductDetails extends AppCompatActivity {
     int total, embalaje;
     Cliente cliente;
     String clienteAdd="";
+    public ArrayAdapter adapter = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,43 +51,30 @@ public class ProductDetails extends AppCompatActivity {
             embalaje=cliente.getEmblaje();
             agregarPedido(cliente.getNombre());
             titulo.setText("Detalles del pedido de:\n" + cliente.getNombre().toUpperCase());
-            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaProductos);
+            adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaProductos);
             listaDetallesPedido.setAdapter(adapter);
         }else{
             Toast.makeText(ProductDetails.this, "Ha ocurrido un error ",
                     Toast.LENGTH_SHORT).show();
         }
 
-        // envia como objeto el codigo del producto a la activity EditOrden
         listaDetallesPedido.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
                 //consultaPedido(clienteAdd);
                 Pedido orden = ordenPedido.get(pos);
 
-                Intent intent = new Intent(ProductDetails.this, EditOrden.class );
+                OrdenDialogFragment dialog = new OrdenDialogFragment();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("codigo", orden);
-                intent.putExtras(bundle);
-                startActivity(intent);
-                finish();
+                dialog.setArguments(bundle);
+                dialog.show(getSupportFragmentManager(), dialog.getTag());
             }
         });
-
     }
-
-    /*@Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            moveTaskToBack(true);
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }*/
-
     @Override
-    public void onBackPressed() {
-        finish();
+    public void onResume() {
+        super.onResume();
     }
 
 
@@ -103,18 +86,18 @@ public class ProductDetails extends AppCompatActivity {
             conn = new DataBaseSQLHelper(getApplicationContext());
             SQLiteDatabase db = conn.getReadableDatabase();
             String cli = cliente;
-           // SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+            // SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
             //Date date = new Date();
             //String systemDate = dateFormat.format(date);
             String[] parametro = {cli};
 
             String sql="SELECT * FROM " + Estructura_BBDD.TABLE_ORDEN_O + " WHERE "+
-                        Estructura_BBDD.CLIENTE_O + " = ? ORDER BY codProducto" ;
+                    Estructura_BBDD.CLIENTE_O + " = ? ORDER BY codProducto" ;
 
             Cursor cursor = db.rawQuery(sql,parametro);
 
             while(cursor.moveToNext()){
-               Pedido pedido = new Pedido();
+                Pedido pedido = new Pedido();
                 pedido.setId(cursor.getInt(0));
                 pedido.setCliente(cursor.getString(1));
                 pedido.setCodigoProd(cursor.getString(2));
@@ -176,5 +159,4 @@ public class ProductDetails extends AppCompatActivity {
             return  false;
         }
     }
-
 }

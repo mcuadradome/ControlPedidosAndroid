@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.ic.registropedidos.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_new_order"
+        android:name="com.ic.registropedidos.ui.newOrder.NewOrderFragment"
+        android:label="@string/NuevoPedido"
+        tools:layout="@layout/fragment_new_order" />
+
+    <fragment
+        android:id="@+id/nav_cargue"
+        android:name="com.ic.registropedidos.ui.porCargar.PorCargarFragment"
+        android:label="@string/porCargar"
+        tools:layout="@layout/fragment_por_cargar" />
+
+    <fragment
+        android:id="@+id/nav_add_product"
+        android:name="com.ic.registropedidos.ui.addProduct.AddProductFragment"
+        android:label="@string/NuevoProducto"
+        tools:layout="@layout/fragment_add_product" />
+
+    <fragment
+        android:id="@+id/nav_update_product"
+        android:name="com.ic.registropedidos.ui.updateProducto.UpdateProductFragment"
+        android:label="@string/actualizar"
+        tools:layout="@layout/fragment_update_product" />
+
+
+</navigation>

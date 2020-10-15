@@ -10,8 +10,6 @@ import android.provider.BaseColumns;
 
     public Estructura_BBDD(){}
 
-
-
         //Estructure table user
         public static final String ID_U = "id";
         public static final String TABLE_USUARIO = "usuario";
@@ -45,6 +43,7 @@ import android.provider.BaseColumns;
         public static final String TABLE_CLIENT = " cliente ";
         public static final String NOMBRE = "nombre_cliente";
         public static final String ZONA = "zona_cliente";
+
 
         public static  final String CREARTABLAUSUARIO = "CREATE TABLE " + TABLE_USUARIO + " (" +
                                                         ID_U + " INTEGER PRIMARY KEY AUTOINCREMENT, "  +
