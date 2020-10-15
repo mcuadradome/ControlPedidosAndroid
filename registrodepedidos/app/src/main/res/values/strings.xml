@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Registro Pedidos</string>
+    <string name="usuario">Usuario:</string>
+    <string name="password">Contraseña:</string>
+    <string name="Ingresar">Ingresar</string>
+    <string name="title_activity_select_options">Menu</string>
+    <string name="NuevoPedido">Nuevo Pedido</string>
+    <string name="ConsultarPedido">Consultar Pedido</string>
+    <string name="Total">Total:</string>
+    <string name="GuardarPedido">Guardar</string>
+    <string name="Codigo">Cod. Producto</string>
+    <string name="Descripcion">Descripcion</string>
+    <string name="Cantidad">Cantidad</string>
+    <string name="ingProd">Ingresar Nuevo Pedido</string>
+    <string name="About">Acerca de...</string>
+    <string name="NuevoProducto">Nuevo Producto</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="SelectOption">Seleccione una opcion:</string>
+    <string name="Client">Cliente:</string>
+    <string name="NewProd">Productos</string>
+    <string name="RegUsuario">Registrar</string>
+    <string name="Embalaje">Embalaje</string>
+    <string name="IVA">IVA</string>
+    <string name="precio">Precio Base</string>
+    <string name="valorIva">Valor IVA</string>
+    <string name="precioFinal">Precio Final</string>
+    <string name="producDetails">Detalles del pedido</string>
+    <string name="titlePedido">Pedidos</string>
+    <string name="btnUpdateProduct">Actualizar producto</string>
+    <string name="update">Actualizar</string>
+    <string name="delete">Eliminar pedidos</string>
+    <string name="porCargar">Por Cargar</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="deleteProd">Eliminar</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Editar cantidad producto</string>
+    <string name="EditarCantidad">Editar cantidad</string>
+
+
+    <!--Bloque de anuncios -->
+    <string name="bannerInferior">ca-app-pub-8967128751164211/3226858012</string>
+
+</resources>

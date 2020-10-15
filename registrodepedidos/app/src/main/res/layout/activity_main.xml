@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginTop="15dp"
+                android:contentDescription="@string/usuario"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/user" />
+
+            <EditText
+                android:id="@+id/txtUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:ems="10"
+                android:hint="@string/usuario"
+                android:inputType="text"
+                android:text="jose" />
+
+            <EditText
+                android:id="@+id/txtPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:ems="10"
+                android:inputType="numberPassword"
+                android:hint="@string/password" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp">
+
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="150dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:onClick="Ingresar"
+                    android:text="@string/Ingresar" />
+
+                <Button
+                    android:id="@+id/btnRegistro"
+                    android:layout_width="150dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:onClick="Registrar"
+                    android:text="@string/RegUsuario" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

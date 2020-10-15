@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@mipmap/bgapps"
+    android:layout_height="match_parent"
+    tools:context=".NewOrder">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="100dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="15dp"
+                    android:contentDescription="@string/porCargar"
+                    app:srcCompat="@drawable/neworder" />
+
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="40dp"
+                    android:textSize="22sp"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/NuevoPedido"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+            </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="60dp"
+        android:padding="6dp"
+        android:layout_height="match_parent">
+
+
+        <EditText
+            android:id="@+id/txtClient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/Client" />
+
+        <EditText
+            android:id="@+id/nCantidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:hint="@string/Cantidad"
+            android:inputType="number"
+            android:maxLength="3" />
+
+
+        <EditText
+            android:id="@+id/nCod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:hint="@string/Codigo"
+            android:inputType="number"
+            android:maxLength="6"
+            android:nextFocusDown="@id/nCantidad" />
+
+
+        <Switch
+            android:id="@+id/switchPaquete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:checked="true"
+            android:text="Por Paquete" />
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="@string/bannerInferior">
+        </com.google.android.gms.ads.AdView>
+
+
+    </LinearLayout>
+
+  </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

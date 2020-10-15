@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bgapps"
+    tools:context=".SearchOrders">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:contentDescription="@string/titlePedido"
+                app:srcCompat="@drawable/client" />
+
+            <TextView
+                android:id="@+id/lblTitlePedido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="15dp"
+                android:text="@string/titlePedido"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:alignmentMode="alignMargins"
+            android:layout_marginTop="50dp"
+            android:padding="6dp"
+            android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnEliminar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:onClick="delete"
+                        android:text="@string/delete" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:contentDescription="@string/actualizar"
+                        android:onClick="actualizar"
+                        android:inputType="number"
+                        app:srcCompat="@android:drawable/ic_menu_rotate" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:padding="6dp"
+                    android:alignmentMode="alignMargins"
+                    android:layout_height="match_parent">
+
+                    <ListView
+                        android:id="@+id/listClientes"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:divider="#3F6530"
+                        android:dividerHeight="1dp"
+                        android:longClickable="true"
+                        android:layout_marginRight="15dp">
+
+                    </ListView>
+
+                    <TextView
+                        android:id="@+id/lblTotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:inputType="number"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+
+                </LinearLayout>
+
+            <com.google.android.gms.ads.AdView
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                ads:adSize="SMART_BANNER"
+                ads:adUnitId="@string/bannerInferior"></com.google.android.gms.ads.AdView>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
