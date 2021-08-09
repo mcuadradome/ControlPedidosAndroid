@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,13 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +34,8 @@ import Model.DataBaseSQLHelper;
 import Model.Estructura_BBDD;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = SearchOrders.class.getSimpleName();
 
     private  EditText usu, pass;
     DataBaseSQLHelper conn;
@@ -37,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         usu= findViewById(R.id.txtUser);
         pass= findViewById(R.id.txtPass);
         pass.requestFocus();
+        pass.setText("123456");
 
         insertarProductos();
 
@@ -83,8 +94,27 @@ public class MainActivity extends AppCompatActivity {
             SQLiteDatabase db= conn.getWritableDatabase();
             List<String> datos = new ArrayList<>();
             boolean existData = existData();
+            String fileName = "Products.txt";
+            File file = new File(this.getBaseContext().getFilesDir(), "Products.txt");
 
-            if(!existData){
+            if(file.exists()){
+                FileInputStream fis = this.getBaseContext().openFileInput(fileName);
+                InputStreamReader inputStreamReader =
+                        new InputStreamReader(fis);
+                StringBuilder stringBuilder = new StringBuilder();
+                try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
+                    String line = reader.readLine();
+                    while (line != null) {
+                        stringBuilder.append(line).append('\n');
+                        line = reader.readLine();
+                        datos.add(line);
+                    }
+                } catch (IOException e) {
+                    Log.d(TAG, "Error " + e.getMessage());
+                    Toast.makeText(getApplicationContext(), "Ha surgido un error "+ e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+            }else{
 
                 datos.add("'103', 'FOSFORO GRANDE', 2353, 1, 19");
                 datos.add("'161', 'DELIMANI X 50GR',860, 12, 19");
@@ -159,6 +189,20 @@ public class MainActivity extends AppCompatActivity {
                 datos.add("'532','PAPA LIMON 25GR',7152,1,19");
                 datos.add("'911','PAPA NATURAL LIBRA',6710,1,19");
 
+                try {
+                    FileOutputStream fos = this.getBaseContext().openFileOutput(fileName, Context.MODE_PRIVATE);
+
+                    for (String var : datos){
+                        String line = var + "\n";
+                        fos.write(line.getBytes());
+                    }
+                    fos.close();
+                }catch (Exception e){
+                    Toast.makeText(getApplicationContext(), "Ha surgido un error "+ e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            if(!existData){
                 for (String var : datos){
 
                     db.execSQL("INSERT INTO " + Estructura_BBDD.TABLE_PRODUCTO + "( "+
@@ -170,7 +214,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 db.close();
                 Toast.makeText(getApplicationContext(), "Se han actualizado los productos ", Toast.LENGTH_SHORT).show();
-
             }
             db.close();
 

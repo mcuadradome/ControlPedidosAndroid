@@ -1,41 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    android:isScrollContainer="true">
 
 
     <LinearLayout
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="20dp"
-        android:orientation="vertical"
-        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/txtClient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="15dp"
             android:ems="10"
+            android:hint="@string/Client"
             android:inputType="textPersonName"
-            android:hint="@string/Client" />
+            android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/nCantidad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="15dp"
             android:ems="10"
             android:hint="@string/Cantidad"
             android:inputType="number"
-            android:maxLength="3" />
+            android:maxLength="3"
+            android:minHeight="48dp" />
 
 
         <EditText
@@ -49,6 +54,7 @@
             android:hint="@string/Codigo"
             android:inputType="number"
             android:maxLength="6"
+            android:minHeight="48dp"
             android:nextFocusDown="@id/nCantidad" />
 
 
@@ -60,21 +66,50 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="15dp"
             android:checked="true"
+            android:minHeight="48dp"
             android:text="Por Paquete" />
 
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:text="@string/labelProduct" />
+
+        <ListView
+            android:id="@+id/list_products"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:divider="#3F6530"
+            android:headerDividersEnabled="true"
+            tools:visibility="visible">
+
+        </ListView>
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
             ads:adSize="SMART_BANNER"
-            ads:adUnitId="@string/bannerInferior">
-        </com.google.android.gms.ads.AdView>
-
+            ads:adUnitId="@string/bannerInferior"></com.google.android.gms.ads.AdView>
     </LinearLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

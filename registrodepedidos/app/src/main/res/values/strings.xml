@@ -34,6 +34,7 @@
     <string name="porCargar">Por Cargar</string>
     <string name="actualizar">Actualizar</string>
     <string name="deleteProd">Eliminar</string>
+    <string name="labelProduct">Productos agregados</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="EditarCantidad">Editar cantidad</string>

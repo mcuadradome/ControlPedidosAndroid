@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,6 +35,7 @@ import Model.Estructura_BBDD;
 
 public class SearchOrders extends AppCompatActivity {
 
+    private static final String TAG = SearchOrders.class.getSimpleName();
 
     private  DataBaseSQLHelper conn;
     List<String> listaClientes = new ArrayList<>();
@@ -108,7 +110,7 @@ public class SearchOrders extends AppCompatActivity {
             //String[] parametro = {systemDate};
 
             String sql="SELECT DISTINCT " +Estructura_BBDD.CLIENTE_O +" FROM " + Estructura_BBDD.TABLE_ORDEN_O +
-                        "ORDER BY "+ Estructura_BBDD.CLIENTE_O + " ASC";
+                        " ORDER BY " + Estructura_BBDD.CLIENTE_O + " ASC";
 
 
             Cursor cursor = db.rawQuery(sql,null);
@@ -121,7 +123,8 @@ public class SearchOrders extends AppCompatActivity {
             }
 
         }catch (Exception e){
-            Toast.makeText(SearchOrders.this, "Ha ocurrido un error ",
+            Log.d(TAG, e.getMessage());
+            Toast.makeText(SearchOrders.this, "Ha ocurrido un error " + e.getMessage(),
                     Toast.LENGTH_SHORT).show();
         }
         return  list;
@@ -146,8 +149,9 @@ public class SearchOrders extends AppCompatActivity {
                     exisRegistros=false;
                 }
             }catch (Exception e){
-            Toast.makeText(SearchOrders.this, "Ha ocurrido un error ",
-                    Toast.LENGTH_SHORT).show();
+                Log.d(TAG, e.getMessage());
+                Toast.makeText(SearchOrders.this, "Ha ocurrido un error " + e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
             }
     }
 
@@ -172,7 +176,8 @@ public class SearchOrders extends AppCompatActivity {
             db.close();
 
         }catch (Exception e){
-            Toast.makeText(SearchOrders.this, "Ha ocurrido un error ",
+            Log.d(TAG, e.getMessage());
+            Toast.makeText(SearchOrders.this, "Ha ocurrido un error " + e.getMessage(),
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -209,10 +214,14 @@ public class SearchOrders extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
 
                         ProductDetails.listaProductos.clear();
-                        listaClientes.clear();
-                        Intent search = new Intent(getApplicationContext(), MainActivityBase.class);
-                        startActivity(search);
-                        finish();
+                        if(listaClientes != null){
+                            listaClientes.clear();
+                        }
+
+                        totalView.setText("Total " + 0);
+//                        Intent search = new Intent(getApplicationContext(), MainActivityBase.class);
+//                        startActivity(search);
+//                        finish();
                     }
                 }
             });
@@ -225,6 +234,7 @@ public class SearchOrders extends AppCompatActivity {
 
 
         }catch (Exception e){
+            Log.d(TAG, e.getMessage());
             Toast.makeText(SearchOrders.this, "Ha ocurrido un error ",
                     Toast.LENGTH_SHORT).show();
         }
@@ -265,6 +275,7 @@ public class SearchOrders extends AppCompatActivity {
                     }
             }
         }catch (Exception e){
+            Log.d(TAG, e.getMessage());
             Toast.makeText(SearchOrders.this, "Ha ocurrido un error al obtenerProductosOrden " + e.getMessage(),
                     Toast.LENGTH_SHORT).show();
         }
@@ -300,7 +311,8 @@ public class SearchOrders extends AppCompatActivity {
             }
             db.close();
         }catch (Exception e){
-            Toast.makeText(SearchOrders.this, "Ha ocurrido un error ",
+            Log.d(TAG, e.getMessage());
+            Toast.makeText(SearchOrders.this, "Ha ocurrido un error " + e.getMessage(),
                     Toast.LENGTH_SHORT).show();
         }
         return  list;
@@ -327,6 +339,7 @@ public class SearchOrders extends AppCompatActivity {
             }
             db.close();
         }catch (Exception e){
+            Log.d(TAG, e.getMessage());
             Toast.makeText(SearchOrders.this, "Ha ocurrido un error al consultarProductoPorCod ",
                     Toast.LENGTH_SHORT).show();
         }
@@ -376,6 +389,7 @@ public class SearchOrders extends AppCompatActivity {
                 db.close();
             }
         }catch (Exception e){
+            Log.d(TAG, e.getMessage());
             Toast.makeText(SearchOrders.this, "Ha ocurrido un error al actualizarTabla " + e.getMessage(),
                     Toast.LENGTH_SHORT).show();
         }

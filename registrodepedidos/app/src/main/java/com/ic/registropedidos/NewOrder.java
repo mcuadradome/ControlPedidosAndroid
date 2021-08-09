@@ -7,7 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +18,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import Model.DataBaseSQLHelper;
@@ -26,10 +30,14 @@ public class NewOrder extends AppCompatActivity {
 
     DataBaseSQLHelper conn;
     EditText cliente, codProd, cantidad;
+    ListView listProduct;
     Switch isPorPaquete;
     String descripcion;
     int precioProducto;
     int iva, embalaje;
+    public ArrayAdapter adapter = null;
+    List<String> listaProducts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +55,13 @@ public class NewOrder extends AppCompatActivity {
         cantidad = findViewById(R.id.nCantidad);
         isPorPaquete = findViewById(R.id.switchPaquete);
         isPorPaquete.setChecked(true);
+        listProduct = findViewById(R.id.list_products);
+
+        listaProducts = new ArrayList<>();
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, listaProducts);
+        listProduct.setAdapter(adapter);
+
+        listaProducts.add("prueba");
 
         codProd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -149,6 +164,7 @@ public class NewOrder extends AppCompatActivity {
 
                         db.insert(Estructura_BBDD.TABLE_ORDEN_O, Estructura_BBDD.CODPRODUCTO_O, values);
                         precioProducto=0;
+                        listaProducts.add(codProd.getText().toString()+ ":" + descripcion);
                         Toast.makeText(getApplicationContext(), "Se registro el producto " + descripcion, Toast.LENGTH_SHORT).show();
                         limpiarCampos();
                         cantidad.requestFocus();

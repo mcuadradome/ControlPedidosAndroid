@@ -248,10 +248,15 @@ public class HomeFragment extends Fragment  {
                     }else{
                         db.delete(Estructura_BBDD.TABLE_ORDEN_O,null,null);
                         db.close();
-                        ProductDetails.listaProductos.clear();
+
+                        if(ProductDetails.listaProductos != null){
+                            ProductDetails.listaProductos.clear();
+                        }
+
                         listaClientes.clear();
                         adapter.notifyDataSetChanged();
                         actualizarTabla();
+                        totalView.setText("Total: 0");
 
                         Toast.makeText(getContext(), "Se han eliminado los pedidos. ",
                                 Toast.LENGTH_SHORT).show();
@@ -413,7 +418,7 @@ public class HomeFragment extends Fragment  {
                     }
                 }
                 String str = String.format("%,d", total);
-                totalView.setText("Total " + str);
+                totalView.setText("Total: " + str);
                 isExito=true;
                 db.close();
             }else{
