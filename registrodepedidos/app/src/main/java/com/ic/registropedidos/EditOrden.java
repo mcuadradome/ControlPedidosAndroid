@@ -16,9 +16,6 @@ import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 import java.sql.SQLClientInfoException;
 
 import Entidades.Pedido;
@@ -39,13 +36,6 @@ public class EditOrden extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_orden);
-
-        //CODIGO BANNER
-        AdView adView = findViewById(R.id.adView);
-        AdRequest adRequest2 = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        adView.loadAd(adRequest2);
-        //FIN CODIGO BANNER
 
         descripcion =  findViewById(R.id.txtDesccripcionEdit );
         cantidad = findViewById(R.id.editNumber );

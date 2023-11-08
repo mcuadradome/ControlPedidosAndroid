@@ -23,8 +23,6 @@ import android.view.View.OnClickListener;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.ic.registropedidos.ProductDetails;
 import com.ic.registropedidos.R;
 
@@ -59,13 +57,6 @@ public class HomeFragment extends Fragment  {
 
         try{
             root = inflater.inflate(R.layout.fragment_home, container, false);
-
-            //CODIGO BANNER
-            AdView adView = (AdView) root.findViewById(R.id.adView);
-            AdRequest adRequest2 = new AdRequest.Builder()
-                    .setRequestAgent("android_studio:ad_template").build();
-            adView.loadAd(adRequest2);
-            //FIN CODIGO BANNER
 
             exisRegistros = false;
             listaClientesPedido = root.findViewById(R.id.listClientes );

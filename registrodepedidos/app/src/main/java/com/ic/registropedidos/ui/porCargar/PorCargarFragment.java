@@ -13,8 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.ic.registropedidos.R;
 
 import java.util.ArrayList;
@@ -35,12 +33,6 @@ public class PorCargarFragment extends Fragment {
 
         root = inflater.inflate(R.layout.fragment_por_cargar, container, false);
 
-        //CODIGO BANNER
-        AdView adView = (AdView) root.findViewById(R.id.adView);
-        AdRequest adRequest2 = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        adView.loadAd(adRequest2);
-        //FIN CODIGO BANNER
 
         listaCarge = new ArrayList<>();
         listaProducto = root.findViewById(R.id.listCarge );

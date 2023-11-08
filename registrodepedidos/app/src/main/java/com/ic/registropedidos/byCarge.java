@@ -9,19 +9,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
-import Entidades.Cliente;
 import Entidades.Pedido;
 import Model.DataBaseSQLHelper;
-import Model.Estructura_BBDD;
 
 public class byCarge extends AppCompatActivity {
 
@@ -34,13 +27,6 @@ public class byCarge extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_by_carge);
 
-        //CODIGO BANNER
-        AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest2 = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        adView.loadAd(adRequest2);
-        //FIN CODIGO BANNER
-
         listaCarge = new ArrayList<>();
         listaProducto = findViewById(R.id.listCarge );
         agregarCarge();
@@ -48,7 +34,6 @@ public class byCarge extends AppCompatActivity {
         listaProducto.setAdapter(adapter);
 
     }
-
 
     public List<Pedido> consultarProductosACargar() {
         List<Pedido> pedido = new ArrayList<>();

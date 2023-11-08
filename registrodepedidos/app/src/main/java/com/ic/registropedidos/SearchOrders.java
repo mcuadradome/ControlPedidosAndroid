@@ -18,8 +18,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,12 +49,6 @@ public class SearchOrders extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_orders);
 
-        //CODIGO BANNER
-        AdView adView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest2 = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        adView.loadAd(adRequest2);
-        //FIN CODIGO BANNER
 
         exisRegistros = false;
         listaClientesPedido = findViewById(R.id.listClientes );

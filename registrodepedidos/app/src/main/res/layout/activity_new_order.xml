@@ -102,15 +102,6 @@
             android:checked="true"
             android:text="Por Paquete" />
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            ads:adSize="SMART_BANNER"
-            ads:adUnitId="@string/bannerInferior">
-        </com.google.android.gms.ads.AdView>
-
 
     </LinearLayout>
 

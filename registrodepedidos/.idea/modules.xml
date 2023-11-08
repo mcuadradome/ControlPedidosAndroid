@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ControlPedidosAndroid.registrodepedidos.iml" filepath="$PROJECT_DIR$/.idea/modules/ControlPedidosAndroid.registrodepedidos.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="registrodepedidos/app" />
-      <module fileurl="file://$PROJECT_DIR$/registrodepedidos.iml" filepath="$PROJECT_DIR$/registrodepedidos.iml" group="registrodepedidos" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/registrodepedidos.iml" filepath="$PROJECT_DIR$/.idea/modules/registrodepedidos.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/registrodepedidos.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/registrodepedidos.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/registrodepedidos.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/registrodepedidos.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/registrodepedidos.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/registrodepedidos.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/registrodepedidos.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/registrodepedidos.app.unitTest.iml" />
     </modules>
   </component>
 </project>

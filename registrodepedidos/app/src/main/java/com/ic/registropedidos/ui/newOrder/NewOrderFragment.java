@@ -14,8 +14,6 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.ic.registropedidos.R;
 
 import java.text.SimpleDateFormat;
@@ -39,12 +37,6 @@ public class NewOrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_new_order, container, false);
 
-        //CODIGO BANNER
-        AdView adView = (AdView) root.findViewById(R.id.adView);
-        AdRequest adRequest2 = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        adView.loadAd(adRequest2);
-        //FIN CODIGO BANNER
 
         cliente = root.findViewById(R.id.txtClient);
         codProd = root.findViewById(R.id.nCod);

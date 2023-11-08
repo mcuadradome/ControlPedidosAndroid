@@ -16,8 +16,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.ic.registropedidos.R;
 
 import Model.DataBaseSQLHelper;
@@ -37,12 +35,7 @@ public class UpdateProductFragment extends Fragment {
 
          root = inflater.inflate(R.layout.fragment_update_product, container, false);
 
-        //CODIGO BANNER
-        AdView adView =  root.findViewById(R.id.adView);
-        AdRequest adRequest2 = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        adView.loadAd(adRequest2);
-        //FIN CODIGO BANNER
+
 
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
         spin = root.findViewById(R.id.spinSelectEmbaje);

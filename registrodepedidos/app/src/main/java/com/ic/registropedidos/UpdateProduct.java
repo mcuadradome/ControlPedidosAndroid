@@ -12,8 +12,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import Model.DataBaseSQLHelper;
 import Model.Estructura_BBDD;
 
@@ -29,12 +27,6 @@ public class UpdateProduct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_product);
 
-        //CODIGO BANNER
-        AdView adView =  findViewById(R.id.adView);
-        AdRequest adRequest2 = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        adView.loadAd(adRequest2);
-        //FIN CODIGO BANNER
 
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
         spin = findViewById(R.id.spinSelectEmbaje);

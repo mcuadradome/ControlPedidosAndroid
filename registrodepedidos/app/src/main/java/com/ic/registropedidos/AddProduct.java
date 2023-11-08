@@ -3,21 +3,16 @@ package com.ic.registropedidos;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
-import java.util.ArrayList;
 
 import Model.DataBaseSQLHelper;
 import Model.Estructura_BBDD;
@@ -33,13 +28,6 @@ public class AddProduct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
-
-        //CODIGO BANNER
-        AdView adView = findViewById(R.id.adView);
-        AdRequest adRequest2 = new AdRequest.Builder()
-                .setRequestAgent("android_studio:ad_template").build();
-        adView.loadAd(adRequest2);
-        //FIN CODIGO BANNER
 
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
         spin = findViewById(R.id.spinSelectEmbaje);
@@ -59,6 +47,7 @@ public class AddProduct extends AppCompatActivity {
 
 
     public void onBackPressed() {
+        super.onBackPressed();
         finish();
     }
 
