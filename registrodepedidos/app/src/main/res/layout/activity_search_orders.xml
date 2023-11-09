@@ -51,70 +51,70 @@
             android:padding="6dp"
             android:layout_height="match_parent">
 
-                <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnEliminar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:onClick="delete"
+                    android:text="@string/delete" />
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:contentDescription="@string/actualizar"
+                    android:onClick="actualizar"
+                    android:inputType="number"
+                    app:srcCompat="@android:drawable/ic_menu_rotate" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="6dp"
+                android:alignmentMode="alignMargins"
+                android:layout_height="match_parent">
+
+                <ListView
+                    android:id="@+id/listClientes"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="20dp"
+                    android:divider="#3F6530"
+                    android:dividerHeight="1dp"
+                    android:longClickable="true"
+                    android:layout_marginRight="15dp">
+
+                </ListView>
+
+                <TextView
+                    android:id="@+id/lblTotal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/btnEliminar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="15dp"
-                        android:onClick="delete"
-                        android:text="@string/delete" />
-
-                    <ImageButton
-                        android:id="@+id/imageButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="15dp"
-                        android:contentDescription="@string/actualizar"
-                        android:onClick="actualizar"
-                        android:inputType="number"
-                        app:srcCompat="@android:drawable/ic_menu_rotate" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:padding="6dp"
-                    android:alignmentMode="alignMargins"
-                    android:layout_height="match_parent">
-
-                    <ListView
-                        android:id="@+id/listClientes"
-                        android:layout_width="match_parent"
-                        android:layout_height="250dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="20dp"
-                        android:divider="#3F6530"
-                        android:dividerHeight="1dp"
-                        android:longClickable="true"
-                        android:layout_marginRight="15dp">
-
-                    </ListView>
-
-                    <TextView
-                        android:id="@+id/lblTotal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginBottom="10dp"
-                        android:inputType="number"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:inputType="number"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
 
-                </LinearLayout>
+            </LinearLayout>
 
 
         </LinearLayout>

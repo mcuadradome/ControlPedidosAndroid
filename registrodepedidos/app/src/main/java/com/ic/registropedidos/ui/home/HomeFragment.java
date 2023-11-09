@@ -42,10 +42,10 @@ public class HomeFragment extends Fragment  {
 
     private DataBaseSQLHelper conn;
     List<String> listaClientes = new ArrayList<>();
-    List<Cliente> list = new ArrayList<>();
+    List<Cliente> listAvailableClients = new ArrayList<>();
     ListView listaClientesPedido;
     TextView totalView;
-    boolean isExito;
+
     int total, precioProducto, embalaje;
     private boolean exisRegistros;
     View root;
@@ -56,6 +56,9 @@ public class HomeFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         try{
+            if(!listaClientes.isEmpty()){
+                listaClientes.clear();
+            }
             root = inflater.inflate(R.layout.fragment_home, container, false);
 
             exisRegistros = false;
@@ -84,7 +87,6 @@ public class HomeFragment extends Fragment  {
 
             agregarClientes();
             total=0;
-            isExito =false;
             adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, listaClientes);
             listaClientesPedido.setAdapter(adapter);
            // ft =  getActivity().getSupportFragmentManager().beginTransaction();
@@ -94,14 +96,18 @@ public class HomeFragment extends Fragment  {
                 listaClientesPedido.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                        Cliente cliente = list.get(pos);
+                        if(listaClientes.isEmpty()){
+                            Toast.makeText(getContext(), "Ha ocurrido un error al mostrar los detalles del pedido ",
+                                    Toast.LENGTH_LONG).show();
+                        }else{
+                            Cliente cliente = listAvailableClients.get(pos);
 
-                        Intent intent = new Intent(getContext(), ProductDetails.class );
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("nombre", cliente);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-
+                            Intent intent = new Intent(getContext(), ProductDetails.class );
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("nombre", cliente);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+                        }
                     }
                 });
 
@@ -109,9 +115,15 @@ public class HomeFragment extends Fragment  {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
                                                    int pos, long l) {
-                        Cliente cliente = list.get(pos);
-                        EliminarPedidos(true, cliente, pos);
-                        return true;
+                        if(listAvailableClients.isEmpty()){
+                            Toast.makeText(getContext(), "Ha ocurrido un error al eliminar pedido ",
+                                    Toast.LENGTH_LONG).show();
+                            return  false;
+                        }else{
+                            Cliente cliente = listAvailableClients.get(pos);
+                            EliminarPedidos(true, cliente, pos);
+                            return true;
+                        }
                     }
                 });
             }
@@ -126,9 +138,8 @@ public class HomeFragment extends Fragment  {
 
 
     public List<Cliente> consultaClientes(){
-
+        List<Cliente> oClients = new ArrayList<>();
         try{
-
             conn = new DataBaseSQLHelper(getContext());
             SQLiteDatabase db = conn.getReadableDatabase();
 
@@ -147,7 +158,7 @@ public class HomeFragment extends Fragment  {
                 Cliente cli = new Cliente();
                 cli.setNombre(cursor.getString(0));
                 cli.setEmblaje(embalaje);
-                list.add(cli);
+                oClients.add(cli);
             }
 
         }catch (Exception e){
@@ -155,19 +166,19 @@ public class HomeFragment extends Fragment  {
                     Toast.LENGTH_SHORT).show();
             Log.d(HomeFragment.class.getName(),"Error al consultar Clientes() " + e.getMessage());
         }
-        return  list;
+        return  oClients;
     }
 
     public void agregarClientes(){
 
         try{
-            List<Cliente>  cliente = consultaClientes();
-
-            if(!cliente.isEmpty()) {
-                for (Cliente res : cliente) {
+            List<Cliente>  clientes = consultaClientes();
+            listAvailableClients = clientes;
+            if(!clientes.isEmpty()) {
+                for (Cliente res : clientes) {
                     listaClientes.add("Cliente: " + res.getNombre().toUpperCase());
                 }
-                consultaPedido();
+                consultaTotalPedido();
                 String str = String.format("%,d", total);
                 totalView.setText("Total " + str);
                 exisRegistros=true;
@@ -183,7 +194,7 @@ public class HomeFragment extends Fragment  {
         }
     }
 
-    public void consultaPedido(){
+    public void consultaTotalPedido(){
         try{
 
             conn = new DataBaseSQLHelper(getContext());
@@ -211,7 +222,6 @@ public class HomeFragment extends Fragment  {
     }
 
     public void delete(){
-
         EliminarPedidos(false,null,0);
     }
 
@@ -234,7 +244,7 @@ public class HomeFragment extends Fragment  {
                         listaClientes.remove(posicion);
                         adapter.notifyDataSetChanged();
                         actualizarTabla();
-                        Toast.makeText(getContext(), "Se han eliminado El pedido de " + cliente.getNombre(),
+                        Toast.makeText(getContext(), "Se han eliminado El pedido de " + cliente.getNombre().toUpperCase(),
                                 Toast.LENGTH_SHORT).show();
                     }else{
                         db.delete(Estructura_BBDD.TABLE_ORDEN_O,null,null);
@@ -269,22 +279,20 @@ public class HomeFragment extends Fragment  {
     }
 
     public void actualizar(){
-
-        actualizarTabla();
+        Boolean isExito = actualizarTabla();
         if (isExito) {
             Toast.makeText(getContext(), "Se han actualizado los pedidos.",
                     Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getContext(), "No se han podido actualizar los pedidos.",
+            Toast.makeText(getContext(), "No se han  actualizado los pedidos.",
                     Toast.LENGTH_SHORT).show();
         }
 
     }
 
-    public List<Pedido> obtenerProductosOrden(){
+    public List<Pedido> obtenerProductosOrden(List<Cliente> clientes){
         List<Pedido> listPedidos = new ArrayList<>();
         try{
-            List<Cliente> clientes = list;
             for (Cliente var  : clientes){
                 List<Pedido> pedidos = consultaPedido(var.getNombre());
                 if(!pedidos.isEmpty() || pedidos != null){
@@ -375,13 +383,13 @@ public class HomeFragment extends Fragment  {
         return  list;
     }
 
-    public void actualizarTabla(){
+    public Boolean actualizarTabla(){
         try {
             total=0;
             conn = new DataBaseSQLHelper(getContext());
             SQLiteDatabase db = conn.getWritableDatabase();
             int precio;
-            List<Pedido> listOrders = obtenerProductosOrden();
+            List<Pedido> listOrders = obtenerProductosOrden(listAvailableClients);
             if(!listOrders.isEmpty()) {
                 for (Pedido ped : listOrders) {
                     List<String> prod = consultarProductoPorCod(ped.getCodigoProd());
@@ -410,16 +418,17 @@ public class HomeFragment extends Fragment  {
                 }
                 String str = String.format("%,d", total);
                 totalView.setText("Total: " + str);
-                isExito=true;
                 db.close();
+                return true;
             }else{
-                isExito=false;
                 db.close();
+                return false;
             }
         }catch (Exception e){
             Toast.makeText(getContext(), "Ha ocurrido un error al actualizarTabla " + e.getMessage(),
                     Toast.LENGTH_SHORT).show();
             Log.d(HomeFragment.class.getName(),"Error al actualizarTabla() " + e.getMessage());
+            return false;
         }
     }
 

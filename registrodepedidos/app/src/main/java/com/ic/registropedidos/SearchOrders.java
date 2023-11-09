@@ -96,22 +96,22 @@ public class SearchOrders extends AppCompatActivity {
             conn = new DataBaseSQLHelper(getApplicationContext());
             SQLiteDatabase db = conn.getReadableDatabase();
 
-           // SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-           // Date date = new Date();
+            // SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+            // Date date = new Date();
             //String systemDate = dateFormat.format(date);
             //String[] parametro = {systemDate};
 
             String sql="SELECT DISTINCT " +Estructura_BBDD.CLIENTE_O +" FROM " + Estructura_BBDD.TABLE_ORDEN_O +
-                        " ORDER BY " + Estructura_BBDD.CLIENTE_O + " ASC";
+                    " ORDER BY " + Estructura_BBDD.CLIENTE_O + " ASC";
 
 
             Cursor cursor = db.rawQuery(sql,null);
 
             while(cursor.moveToNext()){
-              Cliente cli = new Cliente();
-              cli.setNombre(cursor.getString(0));
-              cli.setEmblaje(embalaje);
-              list.add(cli);
+                Cliente cli = new Cliente();
+                cli.setNombre(cursor.getString(0));
+                cli.setEmblaje(embalaje);
+                list.add(cli);
             }
 
         }catch (Exception e){
@@ -124,27 +124,27 @@ public class SearchOrders extends AppCompatActivity {
 
     public void agregarClientes(){
 
-            try{
-                List<Cliente>  cliente = consultaClientes();
+        try{
+            List<Cliente>  cliente = consultaClientes();
 
-                if(!cliente.isEmpty()) {
-                    for (Cliente res : cliente) {
-                        listaClientes.add("Cliente: " + res.getNombre().toUpperCase());
-                    }
-                    consultaPedido();
-                    String str = String.format("%,d", total);
-                    totalView.setText("Total " + str);
-                    exisRegistros=true;
-                }else{
-                    listaClientes.add("No hay pedidos guardados ");
-                    totalView.setText("Total " + total);
-                    exisRegistros=false;
+            if(!cliente.isEmpty()) {
+                for (Cliente res : cliente) {
+                    listaClientes.add("Cliente: " + res.getNombre().toUpperCase());
                 }
-            }catch (Exception e){
-                Log.d(TAG, e.getMessage());
-                Toast.makeText(SearchOrders.this, "Ha ocurrido un error " + e.getMessage(),
-                        Toast.LENGTH_SHORT).show();
+                consultaPedido();
+                String str = String.format("%,d", total);
+                totalView.setText("Total " + str);
+                exisRegistros=true;
+            }else{
+                listaClientes.add("No hay pedidos guardados ");
+                totalView.setText("Total " + total);
+                exisRegistros=false;
             }
+        }catch (Exception e){
+            Log.d(TAG, e.getMessage());
+            Toast.makeText(SearchOrders.this, "Ha ocurrido un error " + e.getMessage(),
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void consultaPedido(){
@@ -154,8 +154,8 @@ public class SearchOrders extends AppCompatActivity {
             SQLiteDatabase db = conn.getReadableDatabase();
 
             //SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-           // Date date = new Date();
-           // String systemDate = dateFormat.format(date);
+            // Date date = new Date();
+            // String systemDate = dateFormat.format(date);
             //String[] parametro = {systemDate};
 
             String sql="SELECT " + Estructura_BBDD.TOTALPRODUCTO_O+ " FROM " + Estructura_BBDD.TABLE_ORDEN_O;
@@ -234,14 +234,14 @@ public class SearchOrders extends AppCompatActivity {
 
     public void actualizar(View view){
 
-            actualizarTabla();
-            if (isExito) {
-                Toast.makeText(SearchOrders.this, "Se han actualizado los pedidos.",
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(SearchOrders.this, "No se han podido actualizar los pedidos.",
-                        Toast.LENGTH_SHORT).show();
-            }
+        actualizarTabla();
+        if (isExito) {
+            Toast.makeText(SearchOrders.this, "Se han actualizado los pedidos.",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(SearchOrders.this, "No se han podido actualizar los pedidos.",
+                    Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -251,20 +251,20 @@ public class SearchOrders extends AppCompatActivity {
             List<Cliente> clientes = list;
             for (Cliente var  : clientes){
                 List<Pedido> pedidos = consultaPedido(var.getNombre());
-                    if(!pedidos.isEmpty() || pedidos != null){
-                        for (Pedido ped : pedidos){
-                            Pedido pedido = new Pedido();
+                if(!pedidos.isEmpty() || pedidos != null){
+                    for (Pedido ped : pedidos){
+                        Pedido pedido = new Pedido();
 
-                            pedido.setCliente(ped.getCliente());
-                            pedido.setCodigoProd(ped.getCodigoProd());
-                            pedido.setFecha(ped.getFecha());
-                            pedido.setCantidad(ped.getCantidad());
-                            pedido.setEmbalaje(ped.getEmbalaje());
-                            pedido.setPorPaquete(ped.getPorPaquete());
-                            pedido.setTotalProducto(ped.getTotalProducto());
-                            listPedidos.add(pedido);
-                        }
+                        pedido.setCliente(ped.getCliente());
+                        pedido.setCodigoProd(ped.getCodigoProd());
+                        pedido.setFecha(ped.getFecha());
+                        pedido.setCantidad(ped.getCantidad());
+                        pedido.setEmbalaje(ped.getEmbalaje());
+                        pedido.setPorPaquete(ped.getPorPaquete());
+                        pedido.setTotalProducto(ped.getTotalProducto());
+                        listPedidos.add(pedido);
                     }
+                }
             }
         }catch (Exception e){
             Log.d(TAG, e.getMessage());
@@ -318,9 +318,9 @@ public class SearchOrders extends AppCompatActivity {
             String[] parametro = {codProducto};
 
             String query ="SELECT " + Estructura_BBDD.PRECIO_BASE_P + ", " +Estructura_BBDD.IVA_P +","+
-                           Estructura_BBDD.EMBALAJE_P +
-                           " FROM " + Estructura_BBDD.TABLE_PRODUCTO + " WHERE " +
-                           Estructura_BBDD.CODIGOPRODUCTO_P + " = ?";
+                    Estructura_BBDD.EMBALAJE_P +
+                    " FROM " + Estructura_BBDD.TABLE_PRODUCTO + " WHERE " +
+                    Estructura_BBDD.CODIGOPRODUCTO_P + " = ?";
 
             Cursor cursor = db.rawQuery(query,parametro);
             cursor.moveToFirst();
@@ -349,7 +349,7 @@ public class SearchOrders extends AppCompatActivity {
             if(!listOrders.isEmpty()) {
                 for (Pedido ped : listOrders) {
                     List<String> prod = consultarProductoPorCod(ped.getCodigoProd());
-                     if(!prod.isEmpty()) {
+                    if(!prod.isEmpty()) {
 
                         String parametro[] = new String[]{ped.getCodigoProd(), ped.getCliente()};
                         ContentValues values = new ContentValues();
@@ -361,15 +361,15 @@ public class SearchOrders extends AppCompatActivity {
                         int calculaIVA = (precioProducto * iva) / 100;
                         precioProducto = precioProducto + calculaIVA;
                         if(ped.getPorPaquete()==1){
-                             precio = precioProducto * (ped.getCantidad()*Integer.parseInt(prod.get(2)));
+                            precio = precioProducto * (ped.getCantidad()*Integer.parseInt(prod.get(2)));
                         }else{
-                             precio = precioProducto * ped.getCantidad();
+                            precio = precioProducto * ped.getCantidad();
                         }
                         total += precio;
                         values.put(Estructura_BBDD.TOTALPRODUCTO_O, precio);
                         values.put(Estructura_BBDD.PRECIOPRODUCTO_O, precioProducto);
                         db.update(Estructura_BBDD.TABLE_ORDEN_O, values, Estructura_BBDD.CODPRODUCTO_O + " =? AND " +
-                                  Estructura_BBDD.CLIENTE_O +  "=?", parametro);
+                                Estructura_BBDD.CLIENTE_O +  "=?", parametro);
                     }
                 }
                 String str = String.format("%,d", total);
@@ -389,6 +389,5 @@ public class SearchOrders extends AppCompatActivity {
 
 
 }
-
 
 

@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -17,7 +19,10 @@ import androidx.fragment.app.Fragment;
 import com.ic.registropedidos.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import Model.DataBaseSQLHelper;
@@ -32,11 +37,16 @@ public class NewOrderFragment extends Fragment {
     Switch isPorPaquete;
     int precioProducto;
     int iva, embalaje;
-    Button btnAgregar;
-
+    ListView listaProductos;
+    public  ArrayAdapter adapter= null;
+    List<String> addProducts = new ArrayList<>();
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_new_order, container, false);
 
+        listaProductos = root.findViewById(R.id.list_products);
+
+        adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, addProducts);
+        listaProductos.setAdapter(adapter);
 
         cliente = root.findViewById(R.id.txtClient);
         codProd = root.findViewById(R.id.nCod);
@@ -111,8 +121,11 @@ public class NewOrderFragment extends Fragment {
                     db.insert(Estructura_BBDD.TABLE_ORDEN_O, Estructura_BBDD.CODPRODUCTO_O, values);
                     precioProducto=0;
                     Toast.makeText(getContext(), "Se registro el Producto " + descripcion, Toast.LENGTH_SHORT).show();
-                    limpiarCampos();
 
+                    String str = String.format("%,d", precio);
+                    addProducts.add("PROD:  "+codProd.getText().toString() + "   CANT: " + cantidad.getText().toString() + " - $" + str);
+
+                    limpiarCampos();
                 }
             }
             db.close();
